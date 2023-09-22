@@ -1,0 +1,47 @@
+
+import axios from "axios"
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
+
+export default function Detail() {
+    const { id } = useParams();
+    const [paises, setPaises] = useState({}); // Usamos destructuración de arrays aquí
+
+    useEffect(() => {
+        axios(`http://localhost:3001/countries/${id}`) // Agrega http:// en la URL
+            .then(({ data }) => {
+                console.log(data)
+                if (data.name) {
+                    setPaises(data);
+                } else {
+                    window.alert('No hay países con ese ID');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                window.alert('Error al obtener los detalles del país');
+            });
+    }, [id]);
+
+    return (
+        <div>
+            {paises.name && (
+                <div>
+                    <h2>{paises.name}</h2>
+                    <p><b>ID:</b> {paises.id}</p>
+                    <p><b>Nombre:</b> {paises.name}</p>
+                    <p><b>Continente:</b> {paises.continents}</p>
+                    <p><b>Capital:</b> {paises.capital}</p>
+                    <p><b>Subregión:</b> {paises.subregion}</p>
+                    <p><b>Área:</b> {paises.area}</p>
+                    <p><b>Población:</b> {paises.population}</p>
+                    <img src={paises.flags} alt='Imagen no encontrada' />
+                </div>
+            )}
+        </div>
+    );
+}
+
+
+
+

@@ -1,0 +1,36 @@
+.navegacion{
+    background-color: #ac1a1a;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0; /* Coloca el menú en la parte superior de la ventana */
+    left: 0;
+    width: 100%; /* Ancho del menú al 100% de la ventana */
+    z-index: 1000;
+}
+.botonHome{
+    /* background-color: blue; */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  /* text-align: center; */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-left: -382px;
+}
+.botonForm{
+    /* background-color: blue; */
+    color: white;
+    border: none;
+    /* padding: 10px 20px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+}

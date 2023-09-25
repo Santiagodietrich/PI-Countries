@@ -1,6 +1,7 @@
 import Countrie from "../countrie/Countrie";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./Countries.module.css"
 
 export default function Countries({ paises, onClose }) {
   const [countryData, setCountryData] = useState([]);
@@ -51,7 +52,7 @@ export default function Countries({ paises, onClose }) {
   };
 
   return (
-    <div>
+    <div className={styles.FlexContainer}>
       {currentCountries.map((element) => (//mapeamos currentCountries que es quien tiene cargadas las 12 cards 
         <Countrie
           key={element.id}

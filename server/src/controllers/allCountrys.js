@@ -41,7 +41,7 @@ const allCountries = async (req, res) => {
                     name:country.name.common ,
                     flags: country.flags.png,
                     continents: country.continents[0],
-                    capital:country.capital||"",
+                    capital: country.capital||"",
                     area: country.area,
                     population: country.population,
                     subregion: country.subregion  

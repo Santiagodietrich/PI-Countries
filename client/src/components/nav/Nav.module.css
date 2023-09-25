@@ -1,36 +1,117 @@
-.navegacion{
-    background-color: #ac1a1a;
-    color: #fff;
-    padding: 10px 0;
-    position: fixed; /* Fija el menú en la parte superior */
-    top: 0; /* Coloca el menú en la parte superior de la ventana */
-    left: 0;
-    width: 100%; /* Ancho del menú al 100% de la ventana */
-    z-index: 1000;
+.menu {
+	/* background: #0099CC; */
+	background: linear-gradient(to bottom,  #0099CC,  #9A7CD6);
+	color: #FFF;
+	height: 80px;
+	padding-left: 18px;
+	border-radius: 12px;
+	height: 96px;
+	
 }
-.botonHome{
-    /* background-color: blue; */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  /* text-align: center; */
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  margin-left: -382px;
-}
-.botonForm{
-    /* background-color: blue; */
-    color: white;
-    border: none;
-    /* padding: 10px 20px; */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    
-}
+/* .botonHome{
+    position: relative;
+    top:-10px;
+    left: -550px;
+	list-style: none;
+	height: 39px;
+	
+	
+} */
+
+.botonHome {
+	width: 100px;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	background-color: rgb(230, 226, 226);
+	border-radius: 30px;
+	color: rgb(19, 19, 19);
+	font-weight: 600;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	transition-duration: .2s;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+	padding-left: 8px;
+	transition-duration: .5s;
+  }
+  
+  .svgIcon {
+	height: 25px;
+	transition-duration: 1.5s;
+  }
+  
+  .bell path {
+	fill: rgb(19, 19, 19);
+  }
+  
+  .botonHome:hover {
+	background-color:  rgb(211, 174, 216);
+	transition-duration: .5s;
+  }
+  
+  .botonHome:active {
+	transform: scale(0.97);
+	transition-duration: .2s;
+  }
+  
+  .botonHome:hover .svgIcon {
+	transform: rotate(250deg);
+	transition-duration: 1.5s;
+  }
+
+/* .botonForm{
+	position: relative;
+    top:-64px;
+    left: -390px;
+	list-style: none;
+	height: 39px;
+} */
+
+.botonForm {
+	width: 100px;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	background-color: rgb(230, 226, 226);
+	border-radius: 30px;
+	color: rgb(19, 19, 19);
+	font-weight: 600;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	transition-duration: .2s;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+	padding-left: 8px;
+	transition-duration: .5s;
+	right: -150px;
+	top: -50px;
+  }
+  
+  .svgIcono {
+	height: 25px;
+	transition-duration: 1.5s;
+  }
+  
+  .bell path {
+	fill: rgb(19, 19, 19);
+  }
+  
+  .botonForm:hover {
+	background-color:  rgb(211, 174, 216);
+	transition-duration: .5s;
+  }
+  
+  .botonForm:active {
+	transform: scale(0.97);
+	transition-duration: .2s;
+  }
+  
+  .botonForm:hover .svgIcono {
+	transform: rotate(250deg);
+	transition-duration: 1.5s;
+  }

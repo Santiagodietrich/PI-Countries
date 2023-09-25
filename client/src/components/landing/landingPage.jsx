@@ -8,12 +8,21 @@ export default function LandingPage(){
         <div className={styles.landing}>
             <h1 className={styles.titulo}>¡Bienvenidos a un viaje por el mundo!</h1>
             
-            <img className={styles.paises} src={mapa} alt="paises" />
-                <button className={styles.boton}>
+             <img className={styles.paises} src={mapa} alt="paises" /> 
+                 <button className={styles.boton}>
                     <Link to={"/home"}>
                     ¡Comencemos!
                     </Link>
                 </button>
         </div>
     );
+    
 };
+
+
+
+
+
+
+
+

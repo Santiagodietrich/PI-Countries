@@ -1,9 +1,9 @@
- /* .landing{
-
+.landing{
+  background-color: blue;
 
     
    
-} */
+} 
 .paises{
   width: 500px;
   height: 300px;
@@ -23,5 +23,7 @@ font-size:38px;
     right: px;
     
 } 
+
+
 
 

@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
+import styles from "./Detail.module.css"
 
 export default function Detail() {
     const { id } = useParams();
@@ -22,26 +23,36 @@ export default function Detail() {
                 window.alert('Error al obtener los detalles del país');
             });
     }, [id]);
-
+        console.log(paises)
     return (
-        <div>
+    <div>
             {paises.name && (
-                <div>
-                    <h2>{paises.name}</h2>
-                    <p><b>ID:</b> {paises.id}</p>
-                    <p><b>Nombre:</b> {paises.name}</p>
-                    <p><b>Continente:</b> {paises.continents}</p>
-                    <p><b>Capital:</b> {paises.capital}</p>
-                    <p><b>Subregión:</b> {paises.subregion}</p>
-                    <p><b>Área:</b> {paises.area}</p>
-                    <p><b>Población:</b> {paises.population}</p>
-                    <img src={paises.flags} alt='Imagen no encontrada' />
-                </div>
+                <div className={styles.cardContainer}>
+                     <div className={styles.card}>
+                        <div className={styles.frontContent}>
+                        <img className={styles.bandera}src={paises.flags} alt='Imagen no encontrada' />
+                        </div>
+                        <div className={styles.content}>
+                        <h2>{paises.name}</h2>
+                        <p><b>ID:</b> {paises.id}</p>
+                        <p><b>Nombre:</b> {paises.name}</p>
+                        <p><b>Continente:</b> {paises.continents}</p>
+                        <p><b>Capital:</b> {paises.capital}</p>
+                        <p><b>Subregión:</b> {paises.subregion}</p>
+                        <p><b>Área:</b> {paises.area}</p>
+                        <p><b>Población:</b> {paises.population}</p>
+                    </div>
+                    </div>
+                    </div>
+
+                // </div>
             )}
-        </div>
+        </div> 
+        
     );
 }
 
 
 
 
+{/* */}

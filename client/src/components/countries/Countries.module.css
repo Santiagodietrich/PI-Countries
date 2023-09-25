@@ -1,0 +1,37 @@
+/* .FlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    width: 98%;
+    gap: 30px;
+    flex-direction: row;
+    padding: 48px;
+    
+}
+
+.FlexContainer div {
+    width: 230px;
+    height: 330px;
+    margin: 5px;
+    
+} */
+
+.FlexContainer{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+    
+    
+}
+.FlexContainer div{
+    
+    width: 270px;
+    margin: 5px;
+    
+}

@@ -13,22 +13,46 @@ function App() {
   const [paises, setPaises] = useState([])
 
 
+  // async function onSearch(name) {
+  //   try {
+  //     const lowerCaseName = name.toLowerCase();
+  //     const response = await axios.get(`http://localhost:3001/countries-name?name=${lowerCaseName}`);
+  //     console.log(response)
+  //      console.log(response.data.name)
+      
+  //     if (response.data && response.data.name > 0) {
+  //       const paisName= response.data[0].name.toLowerCase()
+  //       const paisExist= paises.some((pais)=>pais.name === paisName)
+          
+  //         if (!paisExist){
+  //           setPaises((country)=>[...country, { name: paisName }])
+  //         }else{
+  //           window.alert("El pais ya fue agregado")
+  //         }
+  //     } else {
+  //       window.alert('El país no existe');
+  //     }
+  //   } catch (error) {
+  //     window.alert('Ocurrió un error al buscar el país.');
+  //   }
+  // }
+
+
+
   async function onSearch(name) {
     try {
       const lowerCaseName = name.toLowerCase();
       const response = await axios.get(`http://localhost:3001/countries-name?name=${lowerCaseName}`);
-      console.log(response)
-       console.log(response.data.name)
       
-      if (response.data && response.data.name > 0) {
-        const paisName= response.data[0].name.toLowerCase()
-        const paisExist= paises.some((pais)=>pais.name === paisName)
-          
-          if (!paisExist){
-            setPaises((country)=>[...country, { name: paisName }])
-          }else{
-            window.alert("El pais ya fue agregado")
-          }
+      if (response.data.length > 0) {
+        const paisName = response.data[0].name.toLowerCase();
+        const paisExist = paises.some((pais) => pais.name.toLowerCase() === paisName);
+            
+        if (!paisExist) {
+          setPaises((prevPaises) => [...prevPaises, { name: paisName }]);
+        } else {
+          window.alert("El país ya fue agregado");
+        }
       } else {
         window.alert('El país no existe');
       }

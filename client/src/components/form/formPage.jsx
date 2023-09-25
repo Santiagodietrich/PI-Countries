@@ -1,5 +1,22 @@
+import axios from "axios"
 
 export default function Form(){
+    const[countries,setCountries]=useState([]);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+          try {
+            const response = await axios.get("http://localhost:3001/countries");
+            setCountries(response.data);
+          } catch (error) {
+            console.error("Error fetching countries:", error);
+          }
+        };
+    
+        fetchCountries();
+      }, []);
+
+    
 
     return(
         <form className={styles.formulario} onSubmit={handleSubmit}>
@@ -21,8 +38,23 @@ export default function Form(){
             </div>
             <div className={styles.crearActBoton}>
                 <button className={styles.crear} type="submit">Crear</button>
-
             </div>
+            <div>
+        <label htmlFor="countries">Países:</label>
+        <select
+          id="countries"
+          name="countries"
+          multiple
+          onChange={handleCountryChange}
+          value={selectedCountries}
+        >
+          {countries.map((country) => (
+            <option key={country.id} value={country.name}>
+              {country.name}
+            </option>
+          ))}
+        </select>
+      </div>
         </form>
     )
 }

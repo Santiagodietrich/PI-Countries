@@ -2,10 +2,12 @@
 	/* background: #0099CC; */
 	background: linear-gradient(to bottom,  #0099CC,  #9A7CD6);
 	color: #FFF;
-	height: 80px;
-	padding-left: 18px;
-	border-radius: 12px;
 	height: 96px;
+	padding-left: 18px;
+	/* border-radius: px; */
+	/* height: 96px; */
+	/* margin-top: -33px; */
+	
 	
 }
 /* .botonHome{
@@ -71,7 +73,7 @@
 } */
 
 .botonForm {
-	width: 100px;
+	width: 170px;
 	height: 35px;
 	display: flex;
 	align-items: center;

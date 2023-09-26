@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 35px;
-    margin-top: -32px; 
+    /* margin-top: -32px;  */
     
   }
   
@@ -13,7 +13,7 @@
     outline: none;
     font-size: 14px;
     font-weight: 500;
-    background-color: #e5e5e7;
+    background-color: #ffffff;
     /* caret-color: #f7f7f8; */
     color: #fff;
     padding: 7px 10px;
@@ -22,6 +22,10 @@
     border-bottom-left-radius: 7px;
     margin-right: 1px;
     transition: all .2s ease;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    margin-top: 30px;
+
   }
   
   .input:hover {
@@ -34,9 +38,9 @@
   }
   
   .boton {
-    border: none;
-    cursor: pointer;
-    background-color: rgb(199, 199, 206);
+    /* border: none;
+    cursor: pointer; */
+    background-color: rgb(255, 255, 255);
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
     height: 100%;
@@ -44,6 +48,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
   }
   
   .boton:hover {

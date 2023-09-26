@@ -16,6 +16,7 @@ export default function Countrie({id,name,flags,continents,capital,subregion,are
          <h2>{continents}</h2>
          {/* <h2>{capital}</h2> */}
          
+         
          <div>
          <img className={styles.bandera} src={flags} alt={`No se encuentra la imagen de ${name}`} />
          </div>

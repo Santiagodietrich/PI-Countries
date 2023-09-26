@@ -27,9 +27,9 @@ export default function Detail() {
     return (
     <div>
             {paises.name && (
-                <div className={styles.cardContainer}>
-                     <div className={styles.card}>
-                        <div className={styles.frontContent}>
+                <div className={styles.card}>
+                     
+                        <div className={styles.pais}>
                         <img className={styles.bandera}src={paises.flags} alt='Imagen no encontrada' />
                         </div>
                         <div className={styles.content}>
@@ -42,7 +42,7 @@ export default function Detail() {
                         <p><b>Área:</b> {paises.area}</p>
                         <p><b>Población:</b> {paises.population}</p>
                     </div>
-                    </div>
+                    
                     </div>
 
                 // </div>

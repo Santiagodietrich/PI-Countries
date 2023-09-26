@@ -8,6 +8,7 @@ const createActivity = async (req, res) => {
         if (!name || !dificulty || !duration || !season || !countries) {
             return res.status(400).json({ message: "Faltan datos o países" });
         }
+        console.log(req.body)
 
         // Crear la actividad turística
         const newActivity = await Activity.findOrCreate({

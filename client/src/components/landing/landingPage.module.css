@@ -1,5 +1,5 @@
 .landing{
-  background-color: blue;
+  /* background-color: blue; */
 
     
    
@@ -7,7 +7,7 @@
 .paises{
   width: 500px;
   height: 300px;
-  margin-left: -700px;
+  margin-left: 110px;
 }
 .titulo{
  text-align: center; 
@@ -19,8 +19,8 @@ font-size:38px;
 }
 .boton{
     position: absolute;
-    top: 462px;
-    right: px;
+    top: 480px;
+    
     
 } 
 

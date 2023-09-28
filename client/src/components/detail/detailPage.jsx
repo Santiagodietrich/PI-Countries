@@ -32,7 +32,8 @@ export default function Detail() {
                         <div className={styles.pais}>
                         <img className={styles.bandera}src={paises.flags} alt='Imagen no encontrada' />
                         </div>
-                        <div className={styles.content}>
+                        <div className={styles.container}>
+                        <div className={styles.box}>
                         <h2>{paises.name}</h2>
                         <p><b>ID:</b> {paises.id}</p>
                         <p><b>Nombre:</b> {paises.name}</p>
@@ -42,7 +43,7 @@ export default function Detail() {
                         <p><b>Área:</b> {paises.area}</p>
                         <p><b>Población:</b> {paises.population}</p>
                     </div>
-                    
+                    </div>
                     </div>
 
                 // </div>

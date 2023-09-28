@@ -1,27 +1,4 @@
 
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-// const hola= await Country.findOrCreate({
-//    where:{name:"camerun" , flags:null,
-//                   continent:"qcy",
-//                   capital:"qcy",
-//                   area:11,
-//                   population:11,
-//                   subregion:"qcy"}
-
-
 const axios = require("axios");
 const { Country } = require("../db");
 
@@ -41,7 +18,7 @@ const allCountries = async (req, res) => {
                     name:country.name.common ,
                     flags: country.flags.png,
                     continents: country.continents[0],
-                    capital: country.capital||"",
+                    capital:country.capital ?.[0] || "",
                     area: country.area,
                     population: country.population,
                     subregion: country.subregion  
@@ -51,7 +28,7 @@ const allCountries = async (req, res) => {
             for (const countryData of countriesDt) {
                 const { id,name, flags, capital, continents, area, population, subregion } = countryData;
         
-                await Country.findOrCreate({
+               const hola= await Country.findOrCreate({
                   where: { id }, // Condiciones de búsqueda
                   defaults: {
                     id,
@@ -64,7 +41,9 @@ const allCountries = async (req, res) => {
                     subregion,
                   }, // Valores a crear si no se encuentra el registro
                 });
+                console.log(hola)
               }
+              
         
               // Responde con la lista de países obtenidos de la API
               res.status(200).json(countriesDt);

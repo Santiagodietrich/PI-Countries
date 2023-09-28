@@ -31,7 +31,109 @@
 }
 .FlexContainer div{
     
-    width: 270px;
+    width: 240px;
     margin: 5px;
     
 }
+
+.button{
+   
+	width: 110px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	background-color:  rgb(163, 161, 161);
+	border-radius: 30px;
+	color: rgb(19, 19, 19);
+	font-weight: 600;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	transition-duration: .2s;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+	padding-left: 8px;
+	transition-duration: .5s;
+	right: -180px;
+	top: -30px;
+  }
+  
+  .svgIcono {
+	height: 25px;
+	transition-duration: 1.5s;
+  }
+  
+  .bell path {
+	fill: rgb(19, 19, 19);
+  }
+  
+  .button:hover {
+	background-color:  rgb(211, 174, 216);
+	transition-duration: .5s;
+  }
+  
+  .button:active {
+	transform: scale(0.97);
+	transition-duration: .2s;
+  }
+  
+  .button:hover .svgIcono {
+	transform: rotate(250deg);
+	transition-duration: 1.5s;
+  }
+
+
+
+  .preview{
+   
+	width: 120px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	background-color:  rgb(163, 161, 161);
+	border-radius: 30px;
+	color: rgb(19, 19, 19);
+	font-weight: 600;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	transition-duration: .2s;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+	padding-left: 8px;
+	transition-duration: .5s;
+	right: -32px;
+	top: 13px;
+  }
+  
+  .svgIcon {
+	height: 25px;
+	transition-duration: 1.5s;
+  }
+  
+  .bell path {
+	fill: rgb(19, 19, 19);
+  }
+  
+  .preview:hover {
+	background-color:  rgb(211, 174, 216);
+	transition-duration: .5s;
+  }
+  
+  .preview:active {
+	transform: scale(0.97);
+	transition-duration: .2s;
+  }
+  
+  .preview:hover .svgIcon {
+	transform: rotate(250deg);
+	transition-duration: 1.5s;
+  }
+
+
+ 
+
+
+ 

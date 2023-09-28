@@ -55,7 +55,8 @@ function App() {
                 <Route path='/' element={<Landing/>}></Route>
                 {/* <Route path='/home' element={<Home/>}></Route> */}
                 <Route path='/detail/:id' element={<Detail/>}></Route>
-                <Route path='/countries/form' element={<Form/>}></Route>
+                {/* <Route path='/form' element={<Form/>}></Route> */}
+                <Route path='/form' element={<Form/>}></Route>
                 <Route path="/home" element={<Countries paises={paises} onClose={onClose}/>}></Route>
             </Routes>
         </div>

@@ -1,14 +1,13 @@
-.card {
+/* .card {
     --bg: #8f8c8cda;
-    /* --contrast: #999; */
-    /* --grey: #93a1a1; */
+  
     position:relative;
     padding: 9px;
     background-color: var(--bg);
     border-radius: 35px;
     height: 400px;
     width: 280px;
-    /* justify-content: space-between; */
+   
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
   
@@ -21,17 +20,17 @@
   }
   
   .cardInner {
-    /* display: -webkit-box;
-    display: -ms-flexbox; */
+    
+    
     display:flex;
-    /* justify-content:space-between; */
+   
     align-items: center;
     overflow: hidden;
     width: 190px;
     height: 25px;
     background-color: var(--contrast);
     border-radius: 30px;
-    /* Content style */
+  
     font-size: 30px;
     font-weight: 900;
     color: #c7c4c4;
@@ -40,10 +39,10 @@
   }
 
   .bandera{
-  /* left: 0; */
+ 
   width: 40%;
   z-index: 1; /* Asegura que la bandera esté encima de la card */
-  }
+  /* }
 
   .pais{
 color: black;
@@ -53,4 +52,44 @@ color: black;
   .continente{
     color: black;
 
-  }
+  }  */
+
+
+  .card {
+    width: 90px;
+    height: 354px;
+    border-radius: 20px;
+    background: #abeff8;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   }
+   
+   .cardDetails {
+    color: black;
+    height: 100%;
+    /* gap: .5em; */
+    /* display: ; */
+    /* place-content: center; */
+    
+   }
+
+   /*Hover*/
+   .card:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+   }
+   
+   .bandera{
+ 
+    width: 40%;
+    z-index: 1; /* Asegura que la bandera esté encima de la card */
+     }
+   
+   
+  

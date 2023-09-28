@@ -1,13 +1,16 @@
 .menu {
-	/* background: #0099CC; */
 	background: linear-gradient(to bottom,  #0099CC,  #9A7CD6);
 	color: #FFF;
 	height: 96px;
 	padding-left: 18px;
-	/* border-radius: px; */
-	/* height: 96px; */
-	/* margin-top: -33px; */
+	background-image: url("./aviones.jpg");
+	background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la barra */
+	background-repeat: no-repeat; /* Evita que la imagen se repita */
+	transition: background-color 0.3s ease;
+
+	background-position:center; /* Ajusta la posición de la imagen (center, top, bottom, etc.) */
 	
+
 	
 }
 /* .botonHome{
@@ -27,7 +30,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	gap: 10px;
-	background-color: rgb(230, 226, 226);
+	background-color: rgb(163, 161, 161);
 	border-radius: 30px;
 	color: rgb(19, 19, 19);
 	font-weight: 600;
@@ -79,7 +82,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	gap: 10px;
-	background-color: rgb(230, 226, 226);
+	background-color:  rgb(163, 161, 161);
 	border-radius: 30px;
 	color: rgb(19, 19, 19);
 	font-weight: 600;

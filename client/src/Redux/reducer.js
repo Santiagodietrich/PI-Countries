@@ -8,12 +8,12 @@ const reducer=(state=initialState,action)=>{
     switch(action.type){
 
         case TRAER_PAIS:
-            console.log(state.filteredContinents)
+            console.log(action.payload)
             return{...state,currentCountries:action.payload,filteredContinents:action.payload}
 
         case FILTER_ACTIVITIES: 
-            const filterAct = action.payload.toLowerCase().trim();
-            
+            const filterAct = action.payload.trim();
+            console.log(action.payload)
       if (filterAct === "") {
         return { ...state, filteredContinents: state.currentCountries };
       } else {
@@ -22,10 +22,10 @@ const reducer=(state=initialState,action)=>{
         );
         return { ...state, filteredContinents: filteredActivities };
       }
-            
+   
 
             case FILTER_CONTINENTS: 
-                const filtro = action.payload.toLowerCase().trim();// convierte los nombres en letras minúsculas y elimina espacios en blanco al principio y al final
+                const filtro = action.payload.trim();// convierte los nombres en letras minúsculas y elimina espacios en blanco al principio y al final
 
                     if (filtro === "") {
                         // Si el filtro está vacío, mostrar todos los países nuevamente
@@ -33,10 +33,14 @@ const reducer=(state=initialState,action)=>{
                     } else {
                         // Filtrar países por continente
                         const filteredCountries = state.currentCountries.filter((country) =>
-                        country.filteredContinents.toLowerCase().includes(filtro)
+                        country.filteredContinents.includes(filtro)
                         );
                         return { ...state, filteredContinents: filteredCountries };
                     }
+
+
+           
+
 
 
               

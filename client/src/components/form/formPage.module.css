@@ -1,0 +1,111 @@
+.formContainer {
+    border: 1px solid #ccc; /* Borde sólido */
+    padding: 20px; /* Relleno interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+ 
+  }
+.formulario {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-left: 630px;
+    position: relative;
+  }
+  
+  /* Estilos para cada grupo de input y span */
+  .nameInput,
+  .dificultyInput,
+  .durationInput,
+  .seasonInput {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para los input */
+  .inputUno,
+  .inputDos,
+  .inputTres,
+  .inputCuatro {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para los mensajes de error */
+  .primerSpan,
+  .segundoSpan,
+  .tercerSpan,
+  .cuartoSpan {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+  }
+  
+  /* Estilos para el botón de crear */
+  .crearActBoton {
+    margin-top: 20px;
+  }
+  
+  .crear {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .crear:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos para los checkboxes y labels */
+  .container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .container input {
+    margin-right: 10px;
+  }
+  
+  /* Estilos para los checkmarks */
+  .checkmarkUno,
+  .checkmarkDos,
+  .checkmarkTres,
+  .checkmarkCuatro,
+  .checkmarkCinco,
+  .checkmarkSeis,
+  .checkmarkSiete,
+  .checkmarkOcho,
+  .checkmarkNueve,
+  .checkmarkDiez {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  /* Estilos para cambiar el color de los checkmarks cuando están seleccionados */
+  .container input:checked ~ .checkmarkUno,
+  .container input:checked ~ .checkmarkDos,
+  .container input:checked ~ .checkmarkTres,
+  .container input:checked ~ .checkmarkCuatro,
+  .container input:checked ~ .checkmarkCinco,
+  .container input:checked ~ .checkmarkSeis,
+  .container input:checked ~ .checkmarkSiete,
+  .container input:checked ~ .checkmarkOcho,
+  .container input:checked ~ .checkmarkNueve,
+  .container input:checked ~ .checkmarkDiez {
+    background-color: #4CAF50;
+  }
+  
+  /* Estilos para los textos junto a los checkboxes */
+  .container label {
+    font-size: 16px;
+  }
+  

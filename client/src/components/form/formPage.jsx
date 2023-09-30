@@ -62,6 +62,7 @@ export default function Form(){
      
 
     return(
+        <div className={styles.formContainer}>
         <form className={styles.formulario} onSubmit={handleSubmit}>
             <div className={styles.nameInput}>
                 <input className={styles.inputUno} required="true" placeholder="Nombre" type="text" name="name" value={countries.name} onChange={handleChange}></input>
@@ -131,5 +132,6 @@ export default function Form(){
                 Russia
             </label>
         </form>
+        </div>
     )
 }

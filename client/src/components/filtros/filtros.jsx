@@ -3,7 +3,7 @@ import React,{ useState, useEffect } from "react";
 import {useDispatch , useSelector} from "react-redux";
 
 export default  function Filtros({activities, setActivities}){
-    const countries=useSelector((state) => state.filteredCountries)//usar los paises filtrados
+    const paises=useSelector((state) => state.filteredCountries)//usar los paises filtrados
     const dispatch=useDispatch()
     
     const[selectedActivity, setSelectedActivity]=useState('');
@@ -92,3 +92,5 @@ export default  function Filtros({activities, setActivities}){
 
 
 }
+
+

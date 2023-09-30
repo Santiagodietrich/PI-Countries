@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Countries.module.css"
 import { filter_continents, filter_activities, order_asc, order_desc, traer_pais } from "../../Redux/actions";
-import Filtro from "../filtros/filtros"
+import Filtros from "../filtros/filtros"
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -11,7 +11,7 @@ export default function Countries({ paises }) {
   const [countryData, setCountryData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);//son las paginas
   const [activities,setActivities]=useState([]);
- const countries=useSelector((state)=> state.currentCountries);
+ const countries=useSelector((state)=> state.filteredContinents);
   console.log(countries)
   const dispatch=useDispatch();
   const countriesPerPage = 10;//indico que me renderize solo 10 paises por pagina
@@ -97,7 +97,7 @@ export default function Countries({ paises }) {
   
   return (
     <div className={styles.FlexContainer}>
-      <Filtro activities={activities} setActivities={setActivities}></Filtro>
+      <Filtros activities={activities} setActivities={setActivities}></Filtros>
       {countries.map((element) => (//mapeamos currentCountries que es quien tiene cargadas las 12 cards 
         <Countrie
           key={element.id}

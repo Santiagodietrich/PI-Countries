@@ -2,16 +2,26 @@ import Countrie from "../countrie/Countrie";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Countries.module.css"
+import { filter_continents, filter_activities, order_asc, order_desc, traer_pais } from "../../Redux/actions";
+import Filtro from "../filtros/filtros"
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Countries({ paises, onClose }) {
+
+export default function Countries({ paises }) {
   const [countryData, setCountryData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);//son las paginas
-  const countriesPerPage = 10;//indico que me renderize solo 12 paises por pagina
+  const [activities,setActivities]=useState([]);
+ const countries=useSelector((state)=> state.currentCountries);
+  console.log(countries)
+  const dispatch=useDispatch();
+  const countriesPerPage = 10;//indico que me renderize solo 10 paises por pagina
+
 
   useEffect(() => {//monta el componente 
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/countries");//peticion a api
+        dispatch(traer_pais(response.data))
         setCountryData(response.data);//actualiza los datos
       } catch (error) {
         console.error("Error fetching country data:", error);
@@ -38,9 +48,9 @@ export default function Countries({ paises, onClose }) {
 
   // Cambiar a la página siguiente
   const nextPage = () => {
-    // if (currentPage < Math.ceil(countryData.length / countriesPerPage)) {
-    //   setCurrentPage(currentPage + 1);
-    // }
+    if (currentPage < Math.ceil(countryData.length / countriesPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
     setCurrentPage(currentPage + 1);
   };
 
@@ -51,9 +61,44 @@ export default function Countries({ paises, onClose }) {
     }
   };
 
+  const handleActivitieChange=async(activities) =>{
+    try{
+      await dispatch(filter_activities(activities));
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  const handleContinentsChange=async(continents) =>{
+    try{
+      await dispatch(filter_continents(continents))
+
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  const handleOrderAscd=async() =>{
+    try{
+      await dispatch(order_asc());
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  const handleOrderDescd=async() =>{
+    try{
+      await dispatch(order_desc());
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  
   return (
     <div className={styles.FlexContainer}>
-      {currentCountries.map((element) => (//mapeamos currentCountries que es quien tiene cargadas las 12 cards 
+      <Filtro activities={activities} setActivities={setActivities}></Filtro>
+      {countries.map((element) => (//mapeamos currentCountries que es quien tiene cargadas las 12 cards 
         <Countrie
           key={element.id}
           id={element.id}
@@ -64,8 +109,9 @@ export default function Countries({ paises, onClose }) {
           subregion={element.subregion}
           area={element.area}
           population={element.population}
-          onClose={() => onClose(element.id)}
+         
         />
+        // console.log(countries)
       ))}
       
       {/* Botones de paginación */}

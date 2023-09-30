@@ -30,9 +30,8 @@ function App() {
             
         if (!paisExist) {
           setPaises((prevPaises) => [...prevPaises, { name: paisName }]);
-        } else {
-          window.alert("El país ya fue agregado");
-        }
+        } 
+
       } else {
         window.alert('El país no existe');
       }
@@ -41,11 +40,6 @@ function App() {
     }
   }
   
-
-  function onClose(id){
-    setPaises((paises.filter((paises)=>paises.id !== id)))
-  
- }
   
   const location=useLocation()
   return (
@@ -57,7 +51,7 @@ function App() {
                 <Route path='/detail/:id' element={<Detail/>}></Route>
                 {/* <Route path='/form' element={<Form/>}></Route> */}
                 <Route path='/form' element={<Form/>}></Route>
-                <Route path="/home" element={<Countries paises={paises} onClose={onClose}/>}></Route>
+                <Route path="/home" element={<Countries paises={paises} />}></Route>
             </Routes>
         </div>
    

@@ -1,55 +1,92 @@
-import { filter_continents, filter_activities, order_paises, order_population } from "../../Redux/actions";
-import { useState } from "react";
-import {useDispatch} from "react-redux";
+import { filter_continents, filter_activities, order_asc, order_desc } from "../../Redux/actions";
+import React,{ useState, useEffect } from "react";
+import {useDispatch , useSelector} from "react-redux";
 
-export function Filtros(){
-    const[aux,setAux]=useState(false)
-    const dispatch=useDispatch
+export default  function Filtros({activities, setActivities}){
+    const countries=useSelector((state) => state.filteredCountries)//usar los paises filtrados
+    const dispatch=useDispatch()
     
-    const handleOrder=(event)=>{
-        dispatch(order_paises(event.target.value))
-        setAux(!aux)
+    const[selectedActivity, setSelectedActivity]=useState('');
+    const[selectedCountry, setSelectedCountry]=useState('');
+
+    useEffect(()=>{
+        if(activities && activities.length > 0){
+            setActivities(activities);
+        }
+    },[activities])
+
+    const handleActChange=async(activitie)=>{
+        setSelectedActivity(activitie);
+        try{
+            await dispatch(filter_activities(activitie))
+        }catch(error){
+            console.error(error);
+        }
     }
 
-    const handleOrdenamiento=(event)=>{
-        dispatch(order_population(event.target.value))
-        setAux(!aux)
+    const handleContiChange=async (continent)=>{
+        setSelectedCountry(continent);
+        try{
+            await dispatch(filter_continents(continent))
+        }catch(error){
+            console.error(error)
+        }
+       
     }
 
     const handleFilter=(event)=>{
         dispatch(filter_continents(event.target.value))
     }
 
-    const handleFilterAct=(event)=>{
-        dispatch(filter_activities(event.target.value))
+    const handleOrderA=async()=>{
+        try{
+            await dispatch(order_asc());
+        }catch(error){
+            console.error(error);
+        }
+    }
+
+    const handleOrderD=async()=>{
+        try{
+            await dispatch(order_desc());
+        }catch(error){
+            console.error(error);
+        }
     }
 
     return(
-        <>
-        <select onChange={handleOrder}>
-            <option value="A">Ascendente</option>
-            <option value="D">Descendente</option>
+        <div>
+      <div>
+        <label>Filtrar por Actividad:</label>
+        <select value={selectedActivity} onChange={(e) => handleActChange(e.target.value)}>
+          <option value="">Todos</option>
+          {activities.map((activitie) => (
+            <option key={activitie} value={activitie}>
+              {activitie}
+            </option>
+          ))}
         </select>
-
-        <select onChange={handleOrdenamiento}>
-            <option value="A">Ascendente</option>
-            <option value="D">Descendente</option>
+      </div>
+      <div>
+        <label>Filtrar por Continente:</label>
+        <select value={selectedCountry} onChange={(e) => handleContiChange(e.target.value)}>
+          <option value="">Todos loc continentes</option>
+          <option value="Africa">Africa</option>
+          <option value="South America">South America</option>
+          <option value="North America">North America</option>
+          <option value="Antartica">Antartica</option>
+          <option value="Asia">Asia</option>
+          <option value="Europa">Europa</option>
+          <option value="Oceania">Oceania</option>
+          
         </select>
-
-        <select onChange={handleFilter}>
-            <option value="Africa">Africa</option>
-            <option value="South America">South America</option>
-            <option value="Antarctica">Antarctica</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="Oceania">Oceania</option>
-        </select>
-
-        <select onChange={handleFilterAct}>
-            <option value="All">All</option>
-        </select>
-        </>
+      </div>
+      <div>
+        <button onClick={handleOrderA}>Ordenar Ascendente</button>
+        <button onClick={handleOrderD}>Ordenar Descendente</button>
+      </div>
+     
+    </div>
     )
 
 

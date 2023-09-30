@@ -1,8 +1,18 @@
 export const FILTER_CONTINENTS="FILTER_CONTINENTS";
-export const ORDER_PAISES="ORDER_PAISES";
+export const ORDER_ASC="ORDER_ASC";
 export const FILTER_ACTIVITIES="FILTER_ACTIVITIES";
-export const ORDER_POPULATION="ORDER_POPULATION"
+export const ORDER_DESC="ORDER_DESC";
+export const TRAER_PAIS="TRAER_PAIS"
 
+
+
+export const traer_pais=(currentCountries)=>{
+    return{
+        type:TRAER_PAIS,
+        payload:currentCountries
+        
+    }
+}
 
 export const filter_continents=(continents)=>{
     return{
@@ -12,23 +22,24 @@ export const filter_continents=(continents)=>{
     }
 }
 
-export const filter_activities=(activities)=>{
+export const filter_activities=(activity)=>{
     return{
         type:FILTER_ACTIVITIES,
-        payload:activities
+        payload:activity
     }
 }
 
-export const order_paises=(order)=>{
+export const order_asc=()=>{
     return{
-        type:ORDER_PAISES,
-        payload:order
+        type:ORDER_ASC
+        
     }
 }
 
-export const order_population=(population)=>{
+export const order_desc=()=>{
     return{
-        type:ORDER_POPULATION,
-        payload:population
+        type:ORDER_DESC
+        
     }
 }
+

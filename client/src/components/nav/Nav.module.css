@@ -1,16 +1,29 @@
+.principal {
+    position: absolute; /* Posición fija para mantenerla en la parte superior */
+    top: 0; /* Posición en la parte superior */
+    left: 0;
+    width: 100%; /* Que ocupe todo el ancho */
+    background-color: #053444;
+	z-index: 1;
+}
+
 .menu {
-	background: linear-gradient(to bottom,  #0099CC,  #9A7CD6);
+	background: linear-gradient(to bottom,  #3c49fd,  #fac28e);
 	color: #FFF;
 	height: 96px;
 	padding-left: 18px;
-	background-image: url("./aviones.jpg");
-	background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la barra */
-	background-repeat: no-repeat; /* Evita que la imagen se repita */
-	transition: background-color 0.3s ease;
-
-	background-position:center; /* Ajusta la posición de la imagen (center, top, bottom, etc.) */
+	/* background-image: url("./aviones.jpg");
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	transition: background-color 0.3s ease; */
 	
-
+	/* background-position:center;  */
+	
+	/* position: fixed;
+	top: 0; */
+	/* width: 100%; */
+	/* background-color: #ffffff; */
+	/* z-index: 1000; Asegura que esté por encima de otros elementos */
 	
 }
 /* .botonHome{

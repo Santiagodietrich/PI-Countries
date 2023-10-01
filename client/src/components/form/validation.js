@@ -1,6 +1,6 @@
 
 export default function Validation(inputs){
-    const regexName=/^[a-z]{1,15}$/
+    const regexName=/^[a-zA-Z]{1,15}$/
 
     const regexDificulty=/^[0-9]+$/
 
@@ -9,6 +9,7 @@ export default function Validation(inputs){
     const regexSeason=/^[A-Z][a-zA-Z]{4,8}$/
 
     const errors={};
+    console.log(inputs)
 
     (!inputs.name)? errors.name='Name is required':errors.name='';
     (inputs.name.length > 15)? errors.name='Name must cant be more than 15 characters':errors.name='';

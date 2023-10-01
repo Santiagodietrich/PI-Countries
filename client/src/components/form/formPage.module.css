@@ -1,16 +1,23 @@
 .formContainer {
-    border: 1px solid #ccc; /* Borde sólido */
-    padding: 20px; /* Relleno interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
- 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: brown;
+    padding: 20px;
+    margin-left: 600px; /* Ajusta el margen izquierdo */
+    max-width: 600px; /* Ajusta el ancho máximo */
+  
+    
   }
-.formulario {
+  
+  .formulario {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    margin-left: 630px;
+    max-width: 100%; /* Ajusta el ancho máximo */
     position: relative;
+    box-sizing: border-box;
+    padding: 20px; /* Ajusta el padding */
+    
   }
   
   /* Estilos para cada grupo de input y span */
@@ -72,17 +79,31 @@
     margin-right: 10px;
   }
   
-  /* Estilos para los checkmarks */
-  .checkmarkUno,
-  .checkmarkDos,
-  .checkmarkTres,
-  .checkmarkCuatro,
-  .checkmarkCinco,
-  .checkmarkSeis,
-  .checkmarkSiete,
-  .checkmarkOcho,
-  .checkmarkNueve,
-  .checkmarkDiez {
+ /* Estilos para el contenedor de checkboxes */
+.checkboxContainer {
+    margin-bottom: 10px;
+  }
+  
+  .checkboxContainer .container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .checkboxContainer .container input {
+    margin-right: 10px;
+  }
+  
+  .checkboxContainer .container .checkmarkUno,
+  .checkboxContainer .container .checkmarkDos,
+  .checkboxContainer .container .checkmarkTres,
+  .checkboxContainer .container .checkmarkCuatro,
+  .checkboxContainer .container .checkmarkCinco,
+  .checkboxContainer .container .checkmarkSeis,
+  .checkboxContainer .container .checkmarkSiete,
+  .checkboxContainer .container .checkmarkOcho,
+  .checkboxContainer .container .checkmarkNueve,
+  .checkboxContainer .container .checkmarkDiez {
     width: 15px;
     height: 15px;
     border: 1px solid #000;
@@ -90,19 +111,25 @@
     margin-right: 5px;
   }
   
-  /* Estilos para cambiar el color de los checkmarks cuando están seleccionados */
-  .container input:checked ~ .checkmarkUno,
-  .container input:checked ~ .checkmarkDos,
-  .container input:checked ~ .checkmarkTres,
-  .container input:checked ~ .checkmarkCuatro,
-  .container input:checked ~ .checkmarkCinco,
-  .container input:checked ~ .checkmarkSeis,
-  .container input:checked ~ .checkmarkSiete,
-  .container input:checked ~ .checkmarkOcho,
-  .container input:checked ~ .checkmarkNueve,
-  .container input:checked ~ .checkmarkDiez {
+  .checkboxContainer .container input:checked ~ .checkmarkUno,
+  .checkboxContainer .container input:checked ~ .checkmarkDos,
+  .checkboxContainer .container input:checked ~ .checkmarkTres,
+  .checkboxContainer .container input:checked ~ .checkmarkCuatro,
+  .checkboxContainer .container input:checked ~ .checkmarkCinco,
+  .checkboxContainer .container input:checked ~ .checkmarkSeis,
+  .checkboxContainer .container input:checked ~ .checkmarkSiete,
+  .checkboxContainer .container input:checked ~ .checkmarkOcho,
+  .checkboxContainer .container input:checked ~ .checkmarkNueve,
+  .checkboxContainer .container input:checked ~ .checkmarkDiez {
     background-color: #4CAF50;
   }
+  
+  .checkboxContainer .container label {
+    font-size: 16px;
+  }
+  
+  /* Resto de tus estilos permanecen igual */
+  
   
   /* Estilos para los textos junto a los checkboxes */
   .container label {

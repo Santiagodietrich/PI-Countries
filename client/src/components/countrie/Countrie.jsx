@@ -13,6 +13,7 @@ export default function Countrie({id,name,flags,continents,capital,subregion,are
       <Link to={`/detail/${id}`}><h2>{name}</h2></Link>
         <h2 className={styles.continente}>Continente: </h2>
          <h2>{continents}</h2>
+         
         </div>
         
         

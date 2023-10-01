@@ -8,7 +8,7 @@ export default function LandingPage(){
         
         <div className={styles.landing}>
             <h2 className={styles.titulo}>App Countries</h2>
-            <h4 className={styles.parrafo}>Explora todos los paises que existen, su informacion y crea actividades para uno o varios de ellos</h4>
+            {/* <h4 className={styles.parrafo}>Explora todos los paises que existen, su informacion y crea actividades para uno o varios de ellos</h4> */}
              <img className={styles.celular} src={mapa} alt="paises" /> 
                  <button className={styles.boton}>
                     <Link to={"/home"}>

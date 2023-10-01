@@ -1,6 +1,6 @@
 
-.landing{
-  /* background-color: blue; */
+/* .landing{
+  
 
     
    
@@ -12,39 +12,83 @@
   margin-top: 65px;
 }
 .titulo{
-  font-family: 'Lobster', cursive;
+  
   font-size: 60px;
   letter-spacing: 3px;
   word-spacing: 0px;
   color: #000000;
   font-weight: bold;
-  text-decoration: underline;
-  font-style: normal;
-  font-variant: small-caps;
+
   text-transform: capitalize;
+  margin-top: -20px;
+  margin-left: 420px;
  }
- 
+  */
+
+  .landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Cambiado a centrar tanto vertical como horizontalmente */
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../landing/carretera_paisaje.jpg");
+    background-size: cover;
+    background-position: center center;
+    width: 1517px;
+}
+
+  
+  
+  .titulo {
+    font-size: 60px;
+    letter-spacing: 3px;
+    word-spacing: 0px;
+    color: #000000;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-top: 10px; 
+    margin-left: 20px;
+  }
+  
+  .parrafo {
+    margin-top: 1px;
+    margin-left: 30px;
+    font-size:x-large;
+    color: #000000;
+    
+  }
+  
+  .celular {
+    width: 800px;
+    height: 510px;
+    margin-top: 121px; /* Coloca el celular en la parte inferior */
+    margin-bottom: 10px; /* Ajusta el margen inferior según sea necesario */
+    margin-left: 360px; /* Ajusta el margen izquierdo según sea necesario */
+    margin-right: auto; /* Ajusta el margen derecho según sea necesario */
+  }
+
 .boton{
   display: inline-block;
   padding: 10px 20px;
-  background-color: #dbdada;
-  color: #ffffff;
+  background-color: #fafafa;
+  color: #b8afaf;
   border: 2px solid;
   border-radius: 5px;
-  transform: rotate(-11deg); /* Aplicamos una rotación de 5 grados */
+  transform: rotate(-10deg); /* Aplicamos una rotación de 5 grados */
   cursor: pointer;
   position: absolute;
-  margin-top: 307px;
-  margin-left: -514px;
+  margin-top: 270px;
+  margin-left: -99px;
   width: 125px;
   height: 41px;
   font-size: 14px;
   align-items: center;
   
 } 
-.parrafo{
-  margin-top: 105px;
+/* .parrafo{
+  margin-top: -30px;
   margin-left: 385px;
-}
+} */
 
 

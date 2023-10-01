@@ -1,9 +1,8 @@
-import { filter_continents, filter_activities, order_asc, order_desc } from "../../Redux/actions";
+import { filter_continents, filter_activities, order_byName , order_byPopulation} from "../../Redux/actions";
 import React,{ useState, useEffect } from "react";
-import {useDispatch , useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 export default  function Filtros({activities, setActivities}){
-    const paises=useSelector((state) => state.filteredCountries)//usar los paises filtrados
     const dispatch=useDispatch()
     
     const[selectedActivity, setSelectedActivity]=useState('');
@@ -34,25 +33,23 @@ export default  function Filtros({activities, setActivities}){
        
     }
 
-    const handleFilter=(event)=>{
-        dispatch(filter_continents(event.target.value))
+  
+
+    const handleOrderCountries=async(event)=>{
+        // try{
+        //     await dispatch(order_asc());
+        // }catch(error){
+        //     console.error(error);
+        // }
+        
+        dispatch(order_byName(event.target.value))
     }
 
-    const handleOrderA=async()=>{
-        try{
-            await dispatch(order_asc());
-        }catch(error){
-            console.error(error);
-        }
+    const handleOrderPopulation=async(event)=>{
+        dispatch(order_byPopulation(event.target.value))
+        // selectedCountry(`ordenado por ${event.target.value}`)
     }
 
-    const handleOrderD=async()=>{
-        try{
-            await dispatch(order_desc());
-        }catch(error){
-            console.error(error);
-        }
-    }
 
     return(
         <div>
@@ -82,8 +79,22 @@ export default  function Filtros({activities, setActivities}){
         </select>
       </div>
       <div>
-        <button onClick={handleOrderA}>Ordenar Ascendente</button>
-        <button onClick={handleOrderD}>Ordenar Descendente</button>
+        <label htmlFor="ordenalfabetico">Orden Alfabetico</label>
+        <select id="ordenalfabetico" onChange={event=>handleOrderCountries(event)}>
+            <option >Seleccionar</option>
+            <option value="PorDefecto">Por Defecto</option>
+            <option value="Ascendente">A-Z</option>
+            <option value="Descendente">Z-A</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="CantidadPoblacion">Orden Poblacion</label>
+        <select  id="CantidadPoblacion" onChange={event=>handleOrderPopulation(event)}>
+            <option >Seleccionar</option>
+            <option value="PorDefecto">Por Defecto</option>
+            <option value="Ascendente">A-Z</option>
+            <option value="Descendente">Z-A</option>
+        </select>
       </div>
      
     </div>

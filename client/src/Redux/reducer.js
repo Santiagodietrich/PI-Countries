@@ -1,4 +1,4 @@
-import { FILTER_ACTIVITIES,FILTER_CONTINENTS,TRAER_PAIS,ORDER_BYNAME, ORDER_BYPOPULATION } from "./actions";
+import { FILTER_ACTIVITIES,FILTER_CONTINENTS,TRAER_PAIS,ORDER_BYNAME, ORDER_BYPOPULATION,CREATE_ACTIVITY } from "./actions";
 const initialState={
     allCountries:[],
     filteredContinents:[],
@@ -53,19 +53,45 @@ const reducer=(state=initialState,action)=>{
         //     })
         //     return{...state,countries:ordenAscd};
             
-        // case ORDER_BYPOPULATION:
-        //     let ordenPoblacion=action.payload === "Ascendente" ? state.countries.sort(((a, b)=>a.population - b.population)):
-        //     state.countries.sort(((a, b)=>b.population - a.population))
-        //     return{...state,countries:ordenPoblacion}
+      
+    //     case ORDER_BYNAME:
+    // let ordenAscd = [...state.countries].sort((a, b) => a.name.localeCompare(b.name));
+    // let ordenDscd = [...state.countries].sort((a, b) => b.name.localeCompare(a.name));
+    // if (action.payload === "Z-A") {
+    //     ordenAscd.reverse();
+    // }else if(action.payload === "A-Z"){
+    //     ordenDscd.reverse();
+    // }
 
-        case ORDER_BYNAME:
-    let ordenAscd = [...state.countries].sort((a, b) => a.name.localeCompare(b.name));
-    if (action.payload === "Z-A") {
-        ordenAscd.reverse();
+    
+    // return { ...state, countries: ordenAscd,ordenDscd};
+
+
+    case ORDER_BYNAME:
+    let sortedCountries;
+
+    if (action.payload === 'Z-A') {
+        sortedCountries = [...state.countries].sort((a, b) => b.name.localeCompare(a.name));
+    } else {
+        sortedCountries = [...state.countries].sort((a, b) => a.name.localeCompare(b.name));
     }
-    return { ...state, countries: ordenAscd };
 
-        
+    return { ...state, countries: sortedCountries };
+
+    
+
+
+    // case ORDER_BYNAME:
+    // let sortedCountries;
+    
+    // if (action.payload === 'Z-A') {
+    //     sortedCountries = [...state.countries].sort((a, b) => b.name.localeCompare(a.name));
+    // } else {
+    //     sortedCountries = [...state.countries].sort((a, b) => a.name.localeCompare(b.name));
+    // }
+    
+    // return { ...state, countries: sortedCountries };
+
 
 
 
@@ -79,10 +105,12 @@ const reducer=(state=initialState,action)=>{
     return { ...state, countries: paisesOrdenados };
 
 
+    case CREATE_ACTIVITY:
+        return{...state}
         
 
         default:
-            return state 
+            return {...state }
     }
 }
 

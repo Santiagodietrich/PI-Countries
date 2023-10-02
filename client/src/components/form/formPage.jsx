@@ -11,16 +11,15 @@ export default function Form(){
 
     const inicialForm={
       name:'',
-      dificulty:'',
-      duration:0,
+      dificulty:0,
+      duration:0.0,
       season:'',
       countries:[]
     }
     const[lugares,setLugares]=useState(inicialForm);
-    const[name,setName]=useState("");
-    const[duration,setDuration]=useState("");
-    const dispatch=useDispatch();
-    const count=useSelector((state)=>state.allCountries)
+    const[nombre,setNombre]=useState("");
+    // const[duracion,setDuracion]=useState("");
+    // const[dificultad,setDificultad]=useState("");
     console.log(lugares)
 
     useEffect(() => {
@@ -38,114 +37,126 @@ export default function Form(){
 
       const[errors,setErrors]=useState({});
 
-   
-
-   
-
-    function handleBlur(e) {
-        e.target.value === ''&& setErrors({})
+      function handleBlur(e) {
+        if (e.target.value === '') {
+            setErrors({});
+        }
+        
         setLugares({
             ...lugares,
+            name: nombre, // Agrega el valor de nombre a la propiedad name
             [e.target.name]: e.target.value,
-        })
+        });
+    
     }
 
     function handleSeason(e){
         setLugares({...lugares,season:e.target.value})
     }
 
-      const[selectedCountry,setSelectedCountry]=useState([])
-      const handleChangeSelect=(event)=>{
-        const pais=event.target.value
-        const checked=event.target.checked
+   
 
-        if(checked){
-            setSelectedCountry([pais,...selectedCountry])
-            console.log(selectedCountry)
-        }else{
-            setSelectedCountry(selectedCountry.filter((c)=>c !== pais))
-        }
-      }
-
-      const handleSubmit = async(event)=>{
-        event.preventDefault()
-        const updatedData = { countries: selectedCountry, ...lugares }
-        console.log("hola",updatedData)
-        setLugares([updatedData])
-        try{
-            await axios.post(`http://localhost:3001/activities`, updatedData) 
-        }catch(error){
-           window.alert("Error al crear la actividad")
-        }
+    function handleDuration(e) {
+        const durationValue = parseFloat(e.target.value); // Convertir a número entero
+    
+        setLugares({
+            ...lugares,
+            duration: durationValue
+        });
     }
 
 
-    // function handleSelect(e) {
-    //     const valor = e.target.value
-    //     const id = count.find(e=> {
-    //         if(e.name === valor){
-    //             return e.id
-    //         }
-    //     })
-    //     if(lugares.countries.includes(id.id)){
-    //         alert('ya seleccionaste este País')
-    //     }else{
-    //         setLugares({
-    //             ...lugares,
-    //             countries: [...lugares.countries, id.id]
-    //         })
-    //     }
-    // }
-
-    // function handleDelete (e){
-    //     console.log(e);
-    //    // const id = e.target.innerText
-    //     setActivity({
-    //         ...activity,
-    //         country: activity.country.filter(el => el !== e)
-    //     })
-    // }
+    function handleDificultad(e) {
+        const dificultyValue = parseInt(e.target.value); // Convertir a número entero
     
+        setLugares({
+            ...lugares,
+            dificulty: dificultyValue
+        });
+    }
+    const [selectedValues, setSelectedValues] = useState([])
+    function handleChange(event) {
+        const options = event.target.options;
+        const selectedValues = [];
+      
+        for (let i = 0; i < options.length; i++) {
+          if (options[i].selected) {
+            selectedValues.push(options[i].value);
+          }
+        }
+      
+        setSelectedOptions(selectedValues);
+        console.log("hola",selectedValues)
+      
+        // Actualizamos el estado solo con las countries seleccionadas
+        setLugares((prevLugares) => ({
+          ...prevLugares,
+          countries: selectedValues,
+        }));
+    }
+    
+    //   const[selectedCountry,setSelectedCountry]=useState([])
+    //   const handleChangeSelect=(event)=>{
+    //     const pais=event.target.value
+    //     const checked=event.target.checked
 
-    // function handleSubmit(e) {
-    //     e.preventDefault()
-    //     if (
-    //         lugares.name !== "" &&
-    //         lugares.duration !== "" &&
-    //         lugares.countries.length !== 0 &&
-    //         lugares.season !== "" &&
-    //         lugares.dificulty !== ""
-    //     ) {
-    //         setErrors(false)
-    //         dispatch(createAct(lugares))
-    //         setLugares({
-    //             name: "",
-    //             dificulty: "",
-    //             duration: "",
-    //             season: "",
-    //             countries: []
-    //         })
-    //         alert('Actividad Creada')
-            
-    //     } else {
-    //         setErrors(true)
+    //     if(checked){
+    //         setSelectedCountry([pais,...selectedCountry])
+    //         console.log(selectedCountry)
+    //     }else{
+    //         setSelectedCountry(selectedCountry.filter((c)=>c !== pais))
     //     }
+    //   }
 
+    //   const handleSubmit = async(event)=>{
+    //     event.preventDefault()
+    //     // const updatedData = { countries: selectedCountry, ...lugares }
+    //     // console.log("hola",updatedData)
+    //     setLugares({...lugares, countries:selectedCountry, [event.target.name]:event.target.value})
+    //     // try{
+    //     //     await axios.post(`http://localhost:3001/activities`, lugares) 
+    //     // }catch(error){
+    //     //    window.alert("Error al crear la actividad")
+    //     // }
+    //     dispatch(createAct(lugares))
+    //         // setLugares({
+    //         //     name: "",
+    //         //     dificulty: 0,
+    //         //     duration: 0.0,
+    //         //     season: "",
+    //         //     countries: []
+    //         // })
     // }
+    const [selectedOptions, setSelectedOptions] = useState([]);
 
-
-     
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // setLugares({...lugares, countries:selectedCountry, [event.target.name]:event.target.value})
+        const payload = {
+          name: lugares.name,
+          difficulty: lugares.dificulty,
+          duration: lugares.duration,
+          season: lugares.season,
+          countries: selectedValues,
+        };
+      
+        try {
+          await axios.post('http://localhost:3001/activities', payload);
+        } catch (error) {
+          console.error('Error al crear la actividad:', error);
+        }
+    };
+      
     return(
         <div className={styles.formContainer}>
         <form className={styles.formulario} onSubmit={handleSubmit}>
             <div className={styles.nameInput}>
-                <input className={styles.inputUno}  placeholder="Nombre" type="text" name="name" value={lugares.name} onChange={(e)=>setName(e.target.value)}></input>
+                <input className={styles.inputUno}  placeholder="Nombre" type="text" name="name" value={nombre} onChange={handleBlur}></input>
                 <span className={styles.primerSpan}>{errors.name}</span>
             </div>
             <div>
                 <label htmlFor="Dificulty">Dificultad</label>
-                <select id="Dificulty" onChange={handleBlur} value={lugares.dificulty} name="Dificulty">
+                <select type="number" id="Dificulty" onChange={handleDificultad} value={lugares.dificulty} name="Dificulty">
                     <option >Seleccionar</option>
                     <option >1</option>
                     <option >2</option>
@@ -154,10 +165,31 @@ export default function Form(){
                     <option >5</option>
                 </select>
             </div>
+            <div>
+                <label htmlFor="Countries">Paises</label>
+                <select type="string" id="Countries" multiple={true} onChange={handleChange} value={lugares.countries} name="Countries">
+                    <option >Seleccionar</option>
+                    <option >Argentina</option>
+                    <option >Kenya</option>
+                    <option >San Marino</option>
+                    <option >Brazil</option>
+                    <option >Japan</option>
+                    <option >Mexico</option>
+                    <option >Antartica</option>
+                    <option >Francia</option>
+                    <option >Russia</option>
+                </select>
+            </div>
             
-            <div className={styles.durationInput}>
-                <input className={styles.inputTres}  placeholder="Duracion" type="number" name="duration" value={lugares.duration} onChange={(e)=>setDuration(e.target.value)} step="0.01"></input>
-                <span className={styles.tercerSpan}>{errors.duration}</span>
+            <div>
+                <label htmlFor="Duracion">Duration</label>
+                <select type= "number" id="Duracion" onChange={handleDuration}>
+                    <option >Seleccionar</option>
+                    <option>60.30</option>
+                    <option>25.30</option>
+                    <option>10.30</option>
+                    <option>70.30</option>
+                </select>
             </div>
             <div>
                 <label htmlFor="Temporada">Temporada</label>
@@ -173,7 +205,7 @@ export default function Form(){
             <div className={styles.crearActBoton}>
                 <button className={styles.crear} type="submit">Crear</button>
             </div>
-            <div className={styles.checkboxContainer}>
+            {/* <div className={styles.checkboxContainer}>
             <label className={styles.container} for="type 1">
                 <input type="checkbox" defaultChecked={false} value= "Kenya" onChange={handleChangeSelect}></input>
                 <div className={styles.checkmarkUno}></div>
@@ -222,7 +254,7 @@ export default function Form(){
                 <div className={styles.checkmarkDiez}></div>
                 Russia
             </label>
-            </div>
+            </div> */} 
 
 
                 {/* <div>

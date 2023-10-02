@@ -9,9 +9,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dificulty:{type:DataTypes.INTEGER, allowNull:true},
-    duration:{type:DataTypes.DECIMAL, allowNull:true},
-    season:{type:DataTypes.ENUM("Verano","Otoño","Invierno","Primavera"), allowNull:true}
+    dificulty:{type:DataTypes.INTEGER, allowNull:false},
+    duration:{type:DataTypes.DECIMAL, allowNull:false},
+    season:{type:DataTypes.ENUM("Verano","Otoño","Invierno","Primavera"), allowNull:false}
   });
 };
 

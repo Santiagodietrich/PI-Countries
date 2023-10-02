@@ -6,7 +6,8 @@
     padding: 20px;
     margin-left: 600px; /* Ajusta el margen izquierdo */
     max-width: 600px; /* Ajusta el ancho máximo */
-  
+    z-index: 1;
+    position: absolute;
     
   }
   

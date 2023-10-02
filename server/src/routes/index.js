@@ -11,6 +11,7 @@ router.get("/countries", allCountries)
 router.get("/countries/:id", getId)
 router.get("/countries-name",name)
 router.post("/activities",createActivity)
+
 router.get("/activities/activity",allActivities)
 
 

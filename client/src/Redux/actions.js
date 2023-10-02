@@ -2,7 +2,10 @@ export const FILTER_CONTINENTS="FILTER_CONTINENTS";
 export const ORDER_BYNAME="ORDER_BYNAME";
 export const FILTER_ACTIVITIES="FILTER_ACTIVITIES";
 export const TRAER_PAIS="TRAER_PAIS";
-export const ORDER_BYPOPULATION="ORDER_BYPOPULATION"
+export const ORDER_BYPOPULATION="ORDER_BYPOPULATION";
+export const CREATE_ACTIVITY="CREATE_ACTIVITY";
+import axios from "axios"
+
 
 
 
@@ -30,12 +33,20 @@ export const filter_activities=(activity)=>{
     }
 }
 
-export const order_byName=()=>{
-    return{
-        type:ORDER_BYNAME
+// export const order_byName=()=>{
+//     return{
+//         type:ORDER_BYNAME
         
-    }
-}
+//     }
+// }
+
+export const order_byName = () => {
+    return {
+        type: ORDER_BYNAME,
+         
+    };
+};
+
 
 export const order_byPopulation=(population)=>{
     return{
@@ -44,11 +55,11 @@ export const order_byPopulation=(population)=>{
     }
 }
 
-export function createAct(payload){
-    return async function(){
+export function createAct(input){
+    return async function(dispatch){
         
-        const json = await axios.post("/activities", payload)
-        return json;
+         await axios.post("http://localhost:3001/activities", input)
+        return dispatch({type:CREATE_ACTIVITY})
     }
 }
 

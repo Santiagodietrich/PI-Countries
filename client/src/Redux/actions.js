@@ -59,7 +59,7 @@ export function createAct(input){
     return async function(dispatch){
         
          await axios.post("http://localhost:3001/activities", input)
-        return dispatch({type:CREATE_ACTIVITY})
+        return dispatch({type:CREATE_ACTIVITY,payload:input})
     }
 }
 

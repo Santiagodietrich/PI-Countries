@@ -18,10 +18,8 @@ export default function Form(){
     }
     const[lugares,setLugares]=useState(inicialForm);
     const[nombre,setNombre]=useState("");
-    // const[duracion,setDuracion]=useState("");
-    // const[dificultad,setDificultad]=useState("");
-    console.log(lugares)
-
+    const ciudades=useSelector((state)=>state.allCountries)
+    
     useEffect(() => {
         const fetchCountries = async () => {
           try {
@@ -75,38 +73,42 @@ export default function Form(){
         });
     }
     const [selectedValues, setSelectedValues] = useState([])
-    function handleChange(event) {
-        const options = event.target.options;
-        const selectedValues = [];
+    // function handleChange(event) {
+    //     const options = event.target.options;
+    //     const selectedValues = [];
       
-        for (let i = 0; i < options.length; i++) {
-          if (options[i].selected) {
-            selectedValues.push(options[i].value);
-          }
-        }
+    //     for (let i = 0; i < options.length; i++) {
+    //       if (options[i].selected) {
+    //         selectedValues.push(options[i].value);
+    //       }
+    //     }setSelectedOptions(selectedValues);
+        // console.log("hola",selectedValues)
       
-        setSelectedOptions(selectedValues);
-        console.log("hola",selectedValues)
-      
-        // Actualizamos el estado solo con las countries seleccionadas
-        setLugares((prevLugares) => ({
-          ...prevLugares,
-          countries: selectedValues,
-        }));
-    }
-    
-    //   const[selectedCountry,setSelectedCountry]=useState([])
-    //   const handleChangeSelect=(event)=>{
-    //     const pais=event.target.value
-    //     const checked=event.target.checked
+        // // Actualizamos el estado solo con las countries seleccionadas
+        // setLugares((prevLugares) => ({
+        //   ...prevLugares,
+        //   countries: selectedValues,
+        // }));
 
-    //     if(checked){
-    //         setSelectedCountry([pais,...selectedCountry])
-    //         console.log(selectedCountry)
-    //     }else{
-    //         setSelectedCountry(selectedCountry.filter((c)=>c !== pais))
-    //     }
-    //   }
+    function handleChange(e) {
+        const valor = e.target.value
+        const id = ciudades.find(e=> {
+            if(e.name === valor){
+                return e.id
+            }
+        })
+        if(lugares.countries.includes(id.id)){
+            alert('ya seleccionaste este País')
+        }else{
+            setLugares({
+                ...lugares,
+                countries: [...lugares.countries, id.id]
+            })
+        }
+    }
+
+      
+
 
     //   const handleSubmit = async(event)=>{
     //     event.preventDefault()
@@ -154,7 +156,7 @@ export default function Form(){
                 <input className={styles.inputUno}  placeholder="Nombre" type="text" name="name" value={nombre} onChange={handleBlur}></input>
                 <span className={styles.primerSpan}>{errors.name}</span>
             </div>
-            <div>
+            <div className={styles.dificultyInput}>
                 <label htmlFor="Dificulty">Dificultad</label>
                 <select type="number" id="Dificulty" onChange={handleDificultad} value={lugares.dificulty} name="Dificulty">
                     <option >Seleccionar</option>
@@ -165,7 +167,7 @@ export default function Form(){
                     <option >5</option>
                 </select>
             </div>
-            <div>
+            <div className={styles.paisesInput}>
                 <label htmlFor="Countries">Paises</label>
                 <select type="string" id="Countries" multiple={true} onChange={handleChange} value={lugares.countries} name="Countries">
                     <option >Seleccionar</option>
@@ -181,7 +183,7 @@ export default function Form(){
                 </select>
             </div>
             
-            <div>
+            <div className={styles.durationInput}>
                 <label htmlFor="Duracion">Duration</label>
                 <select type= "number" id="Duracion" onChange={handleDuration}>
                     <option >Seleccionar</option>
@@ -191,7 +193,7 @@ export default function Form(){
                     <option>70.30</option>
                 </select>
             </div>
-            <div>
+            <div className={styles.seasonInput}>
                 <label htmlFor="Temporada">Temporada</label>
                 <select id="Temporada" onChange={handleSeason}>
                     <option >Seleccionar</option>
@@ -205,76 +207,7 @@ export default function Form(){
             <div className={styles.crearActBoton}>
                 <button className={styles.crear} type="submit">Crear</button>
             </div>
-            {/* <div className={styles.checkboxContainer}>
-            <label className={styles.container} for="type 1">
-                <input type="checkbox" defaultChecked={false} value= "Kenya" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkUno}></div>
-                Kenya
-            </label>
-            <label className={styles.container} for="type 2">
-                <input type="checkbox" defaultChecked={false} value= "San Marino" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkDos}></div>
-                San Marino
-            </label>
-            <label className={styles.container} for="type 3">
-                <input type="checkbox" defaultChecked={false} value= "Argentina" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkTres}></div>
-                Argentina
-            </label>
-            <label className={styles.container} for="type 4">
-                <input type="checkbox" defaultChecked={false} value= "Nigeria" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkCuatro}></div>
-                Nigeria
-            </label> <label className={styles.container} for="type 5">
-                <input type="checkbox" defaultChecked={false} value= "Brazil" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkCinco}></div>
-                Brazil
-            </label> <label className={styles.container} for="type 6">
-                <input type="checkbox" defaultChecked={false} value= "Japan" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkSeis}></div>
-                Japan
-            </label>
-            <label className={styles.container} for="type 7">
-                <input type="checkbox" defaultChecked={false} value= "Mexico" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkSiete}></div>
-                Mexico
-            </label>
-            <label className={styles.container} for="type 8">
-                <input type="checkbox" defaultChecked={false} value= "Antartica" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkOcho}></div>
-                Antartica
-            </label>
-            <label className={styles.container} for="type 9">
-                <input type="checkbox" defaultChecked={false} value= "Francia" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkNueve}></div>
-                Francia
-            </label>
-            <label className={styles.container} for="type 10">
-                <input type="checkbox" defaultChecked={false} value= "Russia" onChange={handleChangeSelect}></input>
-                <div className={styles.checkmarkDiez}></div>
-                Russia
-            </label>
-            </div> */} 
-
-
-                {/* <div>
-                    <label htmlFor="seleccionar">Seleccionar País:</label>
-                    <select className={styles.select} id="seleccionar" onChange={handleSelect} required>
-                      
-                        {count.map(e => (
-                            <option key={e.name} value={e.name}>{e.name}</option>
-                        ))}
-                    </select>
-                    <div className={styles.paises}>
-                    {lugares.countries.map(el =>
-                        (<div className={styles.pais} key={el}>
-                            <p >{el}</p>
-                            <button className={styles.button}onClick={()=>handleDelete(el)}>✖️</button>
-                            </div>
-                        ))}
-                    </div>
-                  
-                </div> */}
+            
                 
         </form>
         </div>

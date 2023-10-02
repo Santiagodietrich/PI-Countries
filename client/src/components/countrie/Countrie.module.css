@@ -1,65 +1,9 @@
-/* .card {
-    --bg: #8f8c8cda;
-  
-    position:relative;
-    padding: 9px;
-    background-color: var(--bg);
-    border-radius: 35px;
-    height: 400px;
-    width: 280px;
-   
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  }
-  
-  .cardOverlay {
-    position:relative;
-    inset: 0;
-    pointer-events:none;
-    background: repeating-conic-gradient(var(--bg) 0.0000001%, var(--grey) 0.000104%) 60% 60%/600% 600%;
-    filter: opacity(10%) contrast(105%);
-  }
-  
-  .cardInner {
-    
-    
-    display:flex;
-   
-    align-items: center;
-    overflow: hidden;
-    width: 190px;
-    height: 25px;
-    background-color: var(--contrast);
-    border-radius: 30px;
-  
-    font-size: 30px;
-    font-weight: 900;
-    color: #c7c4c4;
-    text-align: center;
-    font-family: monospace;
-  }
-
-  .bandera{
- 
-  width: 40%;
-  z-index: 1; /* Asegura que la bandera esté encima de la card */
-  /* }
-
-  .pais{
-color: black;
-
-
-  }
-  .continente{
-    color: black;
-
-  }  */
-
 
   .card {
     width: 90px;
     height: 354px;
     border-radius: 20px;
-    background: #e8ebe7;
+    background: #c5fcb2;
     position: relative;
     padding: 1.8rem;
     border: 2px solid #c3c6ce;
@@ -75,11 +19,7 @@ color: black;
    .cardDetails {
     color: black;
     height: 100%;
-    
-    /* gap: .5em; */
-    /* display: ; */
-    /* place-content: center; */
-    
+  
    }
 
    /*Hover*/

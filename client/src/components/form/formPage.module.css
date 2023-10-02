@@ -2,34 +2,37 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: brown;
+    background-color: rgb(147, 128, 216);
     padding: 20px;
-    margin-left: 600px; /* Ajusta el margen izquierdo */
+    margin-left: 650px; /* Ajusta el margen izquierdo */
     max-width: 600px; /* Ajusta el ancho máximo */
     z-index: 1;
     position: absolute;
+    margin-top: -200px;
+    height: 460px;
     
   }
   
   .formulario {
     display: flex;
     flex-direction: column;
-    max-width: 100%; /* Ajusta el ancho máximo */
-    position: relative;
-    box-sizing: border-box;
-    padding: 20px; /* Ajusta el padding */
+    align-items: center;
+   
+    
     
   }
   
-  /* Estilos para cada grupo de input y span */
+  /* Estilos para cada grupo de input */
   .nameInput,
   .dificultyInput,
   .durationInput,
   .seasonInput {
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    padding: 30px;
+    margin-top: -20px;
   }
   
-  /* Estilos para los input */
+  Estilos para los input
   .inputUno,
   .inputDos,
   .inputTres,
@@ -41,10 +44,7 @@
   }
   
   /* Estilos para los mensajes de error */
-  .primerSpan,
-  .segundoSpan,
-  .tercerSpan,
-  .cuartoSpan {
+  .primerSpan {
     color: red;
     font-size: 12px;
     margin-top: 4px;
@@ -53,7 +53,7 @@
   
   /* Estilos para el botón de crear */
   .crearActBoton {
-    margin-top: 20px;
+    margin-top: 5px;
   }
   
   .crear {
@@ -80,60 +80,29 @@
     margin-right: 10px;
   }
   
- /* Estilos para el contenedor de checkboxes */
-.checkboxContainer {
-    margin-bottom: 10px;
-  }
-  
-  .checkboxContainer .container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  
-  .checkboxContainer .container input {
-    margin-right: 10px;
-  }
-  
-  .checkboxContainer .container .checkmarkUno,
-  .checkboxContainer .container .checkmarkDos,
-  .checkboxContainer .container .checkmarkTres,
-  .checkboxContainer .container .checkmarkCuatro,
-  .checkboxContainer .container .checkmarkCinco,
-  .checkboxContainer .container .checkmarkSeis,
-  .checkboxContainer .container .checkmarkSiete,
-  .checkboxContainer .container .checkmarkOcho,
-  .checkboxContainer .container .checkmarkNueve,
-  .checkboxContainer .container .checkmarkDiez {
-    width: 15px;
-    height: 15px;
-    border: 1px solid #000;
-    display: inline-block;
-    margin-right: 5px;
-  }
-  
-  .checkboxContainer .container input:checked ~ .checkmarkUno,
-  .checkboxContainer .container input:checked ~ .checkmarkDos,
-  .checkboxContainer .container input:checked ~ .checkmarkTres,
-  .checkboxContainer .container input:checked ~ .checkmarkCuatro,
-  .checkboxContainer .container input:checked ~ .checkmarkCinco,
-  .checkboxContainer .container input:checked ~ .checkmarkSeis,
-  .checkboxContainer .container input:checked ~ .checkmarkSiete,
-  .checkboxContainer .container input:checked ~ .checkmarkOcho,
-  .checkboxContainer .container input:checked ~ .checkmarkNueve,
-  .checkboxContainer .container input:checked ~ .checkmarkDiez {
-    background-color: #4CAF50;
-  }
-  
-  .checkboxContainer .container label {
-    font-size: 16px;
-  }
-  
-  /* Resto de tus estilos permanecen igual */
-  
-  
-  /* Estilos para los textos junto a los checkboxes */
   .container label {
     font-size: 16px;
   }
+.dificultyInput{
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  margin-top: -70px;
+  margin: 0;
+}
+.durationInput{
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  margin: 0;
   
+}
+.paisesInput{
+  display: flex;
+  /* flex-direction: column; */
+  margin: 0;
+}
+.seasonInput{
+  display: flex;
+  /* flex-direction: column; */
+}

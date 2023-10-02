@@ -12,11 +12,10 @@
 	color: #FFF;
 	height: 96px;
 	padding-left: 18px;
-	/* background-image: url("./aviones.jpg");
-	background-size: cover; 
-	background-repeat: no-repeat; 
-	transition: background-color 0.3s ease; */
-	
+	 background-image: url("./aviones.jpg");
+	background-size: 220px; 
+	background-repeat: repeat; 
+	transition: background-color 0.3s ease;
 	/* background-position:center;  */
 	
 	/* position: fixed;

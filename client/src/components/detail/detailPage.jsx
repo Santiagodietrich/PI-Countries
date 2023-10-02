@@ -38,7 +38,7 @@ export default function Detail() {
                         <p><b>ID:</b> {paises.id}</p>
                         <p><b>Nombre:</b> {paises.name}</p>
                         <p><b>Continente:</b> {paises.continents}</p>
-                        <p><b>Capital:</b> {paises.capital}</p>
+                        {/* <p><b>Capital:</b> {paises.capital}</p> */}
                         <p><b>Subregión:</b> {paises.subregion}</p>
                         <p><b>Área:</b> {paises.area}</p>
                         <p><b>Población:</b> {paises.population}</p>

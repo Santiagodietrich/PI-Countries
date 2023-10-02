@@ -1,6 +1,7 @@
 import { filter_continents, filter_activities, order_byName , order_byPopulation} from "../../Redux/actions";
 import React,{ useState, useEffect } from "react";
 import {useDispatch} from "react-redux";
+import styles from "./filtros.module.css"
 
 export default  function Filtros({activities, setActivities}){
     const dispatch=useDispatch()
@@ -52,7 +53,7 @@ export default  function Filtros({activities, setActivities}){
 
 
     return(
-        <div>
+        <div className={styles.filtro}>
       <div>
         <label>Filtrar por Actividad:</label>
         <select value={selectedActivity} onChange={(e) => handleActChange(e.target.value)}>
@@ -67,7 +68,7 @@ export default  function Filtros({activities, setActivities}){
       <div>
         <label>Filtrar por Continente:</label>
         <select value={selectedCountry} onChange={(e) => handleContiChange(e.target.value)}>
-          <option value="">Todos loc continentes</option>
+          <option value="">Todos los continentes</option>
           <option value="Africa">Africa</option>
           <option value="South America">South America</option>
           <option value="North America">North America</option>

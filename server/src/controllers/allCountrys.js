@@ -18,7 +18,7 @@ const allCountries = async (req, res) => {
                     name:country.name.common ,
                     flags: country.flags.png,
                     continents: country.continents[0],
-                    // capital:country.capital ?.[0] || "",
+                    // capital:typeof country.capital === 'string' ? country.capital : '',
                     area: country.area,
                     population: country.population,
                     subregion: country.subregion  
@@ -28,7 +28,7 @@ const allCountries = async (req, res) => {
             for (const countryData of countriesDt) {
                 const { id,name, flags, capital, continents, area, population, subregion } = countryData;
         
-               const hola= await Country.findOrCreate({
+               const crear= await Country.findOrCreate({
                   where: { id }, // Condiciones de búsqueda
                   defaults: {
                     id,
@@ -41,7 +41,7 @@ const allCountries = async (req, res) => {
                     subregion,
                   }, // Valores a crear si no se encuentra el registro
                 });
-                console.log(hola)
+                
               }
               
         

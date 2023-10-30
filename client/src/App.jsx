@@ -7,6 +7,7 @@ import Form from '../src/components/form/formPage'
 import Countries from '../src/components/countries/Countries'
 import Navbar from '../src/components/nav/Nav'
 import axios from 'axios'
+import Filtros from './components/filtros/filtros'
 import './App.css'
 
 function App() {

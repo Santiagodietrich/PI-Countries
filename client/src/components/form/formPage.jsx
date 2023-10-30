@@ -1,15 +1,16 @@
 import axios from "axios"
 import { useState, useEffect } from "react";
 import styles from "./formPage.module.css"
-import validation from "./validation"
-import { createAct } from "../../Redux/actions";
+import Validation from "./validation"
+import { traer_pais} from "../../Redux/actions";
 import {useDispatch, useSelector } from "react-redux";
+import Filtros from "../filtros/filtros";
 
 
 export default function Form(){
 
-
-    const inicialForm={
+const dispatch=useDispatch()
+const inicialForm={
       name:'',
       dificulty:0,
       duration:0.0,
@@ -17,29 +18,28 @@ export default function Form(){
       countries:[]
     }
     const[lugares,setLugares]=useState(inicialForm);
+    console.log(lugares)
     const[nombre,setNombre]=useState("");
-    const ciudades=useSelector((state)=>state.allCountries)
+    const ciudades=useSelector((state)=>state.countries)
+    const [activities, setActivities] = useState([])
+    const act= useSelector((state)=> state.activi)
     
-    useEffect(() => {
-        const fetchCountries = async () => {
-          try {
-            const response = await axios.get("http://localhost:3001/countries");
-            setLugares(response.data);
-          } catch (error) {
-            console.error("Error fetching countries:", error);
-          }
-        };
+    console.log(lugares)
     
-        fetchCountries();
-      }, []);
+  useEffect(() => {//monta el componente 
+    dispatch(traer_pais())
+  },[dispatch]);
 
       const[errors,setErrors]=useState({});
 
-      function handleBlur(e) {
-        if (e.target.value === '') {
-            setErrors({});
-        }
-        
+
+    function handleName(e) {
+        const inputValue = e.target.value;
+        setNombre(inputValue);
+    
+        const validationErrors = Validation({ ...lugares, name: inputValue });//verifica que sea string y lo actualiza en el estado
+        setErrors(validationErrors);
+    
         setLugares({
             ...lugares,
             name: nombre, // Agrega el valor de nombre a la propiedad name
@@ -49,53 +49,56 @@ export default function Form(){
     }
 
     function handleSeason(e){
-        setLugares({...lugares,season:e.target.value})
+        // setLugares({...lugares,season:e.target.value})
+        const inputValue = e.target.value;
+        setLugares({ ...lugares, season: inputValue });
+    
+        const validationErrors = Validation({ ...lugares, season: inputValue });
+        setErrors(validationErrors);
     }
 
    
 
     function handleDuration(e) {
-        const durationValue = parseFloat(e.target.value); // Convertir a número entero
-    
-        setLugares({
-            ...lugares,
-            duration: durationValue
-        });
+    const inputValue = e.target.value;
+    setLugares({ ...lugares, duration: parseFloat(inputValue) });
+
+    const validationErrors = Validation({ ...lugares, duration: inputValue });
+    setErrors(validationErrors);
+        
     }
 
 
     function handleDificultad(e) {
-        const dificultyValue = parseInt(e.target.value); // Convertir a número entero
-    
-        setLugares({
-            ...lugares,
-            dificulty: dificultyValue
-        });
-    }
-    const [selectedValues, setSelectedValues] = useState([])
-    // function handleChange(event) {
-    //     const options = event.target.options;
-    //     const selectedValues = [];
-      
-    //     for (let i = 0; i < options.length; i++) {
-    //       if (options[i].selected) {
-    //         selectedValues.push(options[i].value);
-    //       }
-    //     }setSelectedOptions(selectedValues);
-        // console.log("hola",selectedValues)
-      
-        // // Actualizamos el estado solo con las countries seleccionadas
-        // setLugares((prevLugares) => ({
-        //   ...prevLugares,
-        //   countries: selectedValues,
-        // }));
+    const inputValue = e.target.value;
+    setLugares({ ...lugares, dificulty: parseInt(inputValue) });
 
-    function handleChange(e) {
+    const validationErrors = Validation({ ...lugares, dificulty: inputValue });
+    setErrors(validationErrors);
+    }
+    
+
+        
+    const [selectedPais, setSelectedPais]= useState([])
+    function handleChange(event) {
+        const pais = event.target.value;
+        const checked = event.target.checked;
+        
+        if (checked) {
+            setSelectedPais([...selectedPais, pais]); // Agrega los paises seleccionados al array
+        } else {
+            setSelectedPais(selectedPais.filter((p) => p !== pais)); // Elimina del array los paises
+        }
+    }
+
+    //seleccionar países
+    function handleSelect(e) {
         const valor = e.target.value
         const id = ciudades.find(e=> {
             if(e.name === valor){
                 return e.id
             }
+            
         })
         if(lugares.countries.includes(id.id)){
             alert('ya seleccionaste este País')
@@ -106,110 +109,90 @@ export default function Form(){
             })
         }
     }
-
-      
-
+    
 
     //   const handleSubmit = async(event)=>{
     //     event.preventDefault()
-    //     // const updatedData = { countries: selectedCountry, ...lugares }
-    //     // console.log("hola",updatedData)
-    //     setLugares({...lugares, countries:selectedCountry, [event.target.name]:event.target.value})
-    //     // try{
-    //     //     await axios.post(`http://localhost:3001/activities`, lugares) 
-    //     // }catch(error){
-    //     //    window.alert("Error al crear la actividad")
-    //     // }
-    //     dispatch(createAct(lugares))
-    //         // setLugares({
-    //         //     name: "",
-    //         //     dificulty: 0,
-    //         //     duration: 0.0,
-    //         //     season: "",
-    //         //     countries: []
-    //         // })
+    //     const updatedData = { countries: selectedPais, ...lugares }
+    //     setLugares([updatedData])
+    //         try{
+    //             await axios.post(`http://localhost:3001/activities`, updatedData) 
+    //         }catch(error){
+    //         window.alert("Error al crear la actividad")
+    //     }
+    //     setActivities((prevActivities) => [
+    //         ...prevActivities,
+    //         { name: lugares.name }
+    //       ]);
+     
+    
     // }
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // setLugares({...lugares, countries:selectedCountry, [event.target.name]:event.target.value})
-        const payload = {
-          name: lugares.name,
-          difficulty: lugares.dificulty,
-          duration: lugares.duration,
-          season: lugares.season,
-          countries: selectedValues,
-        };
+        const updatedData = { countries: selectedPais, ...lugares };
       
         try {
-          await axios.post('http://localhost:3001/activities', payload);
+          await axios.post(`http://localhost:3001/activities`, updatedData);
+      
+          // Asumiendo que la respuesta del servidor tiene un campo 'name'
+          const newActivity = { name: lugares.name };
+      
+          // Agregamos la nueva actividad al estado 'activities'
+          setActivities((prevActivities) => [...prevActivities, newActivity]);
         } catch (error) {
-          console.error('Error al crear la actividad:', error);
+          window.alert("Error al crear la actividad");
         }
-    };
+      }
+
+
       
     return(
+        
         <div className={styles.formContainer}>
         <form className={styles.formulario} onSubmit={handleSubmit}>
             <div className={styles.nameInput}>
-                <input className={styles.inputUno}  placeholder="Nombre" type="text" name="name" value={nombre} onChange={handleBlur}></input>
+                <label htmlFor="Nombre">Nombre</label>
+                <input className={styles.inputUno}  placeholder="Nombre" type="text" name="name" value={nombre} onChange={handleName}></input>
                 <span className={styles.primerSpan}>{errors.name}</span>
             </div>
             <div className={styles.dificultyInput}>
                 <label htmlFor="Dificulty">Dificultad</label>
-                <select type="number" id="Dificulty" onChange={handleDificultad} value={lugares.dificulty} name="Dificulty">
-                    <option >Seleccionar</option>
-                    <option >1</option>
-                    <option >2</option>
-                    <option >3</option>
-                    <option >4</option>
-                    <option >5</option>
-                </select>
+                <input className={styles.inputDos}  placeholder="Dificulty" type="number" name="Dificulty" value={lugares.dificulty} onChange={handleDificultad}></input>
+                <span className={styles.segundoSpan}>{errors.dificulty}</span>
             </div>
-            <div className={styles.paisesInput}>
-                <label htmlFor="Countries">Paises</label>
-                <select type="string" id="Countries" multiple={true} onChange={handleChange} value={lugares.countries} name="Countries">
-                    <option >Seleccionar</option>
-                    <option >Argentina</option>
-                    <option >Kenya</option>
-                    <option >San Marino</option>
-                    <option >Brazil</option>
-                    <option >Japan</option>
-                    <option >Mexico</option>
-                    <option >Antartica</option>
-                    <option >Francia</option>
-                    <option >Russia</option>
-                </select>
-            </div>
-            
+           
             <div className={styles.durationInput}>
                 <label htmlFor="Duracion">Duration</label>
-                <select type= "number" id="Duracion" onChange={handleDuration}>
-                    <option >Seleccionar</option>
-                    <option>60.30</option>
-                    <option>25.30</option>
-                    <option>10.30</option>
-                    <option>70.30</option>
-                </select>
+                <input className={styles.inputTres}  placeholder="Duracion" type="number" name="Duracion" value={lugares.duration} onChange={handleDuration}></input>
+                <span className={styles.tercerSpan}>{errors.duration}</span>
             </div>
             <div className={styles.seasonInput}>
-                <label htmlFor="Temporada">Temporada</label>
-                <select id="Temporada" onChange={handleSeason}>
-                    <option >Seleccionar</option>
-                    <option value="Verano">Verano</option>
-                    <option value="Invierno">Invierno</option>
-                    <option value="Otoño">Otoño</option>
-                    <option value="Primavera">Primavera</option>
-                </select>
+                <label clasname={styles.labelSeason} htmlFor="Temporada">Temporada</label>
+                <input className={styles.inputCuatro}  placeholder="Temporada" type="text" name="Temporada" value={lugares.season} onChange={handleSeason}></input>
+                <span className={styles.cuartoSpan}>{errors.season}</span>
             </div>
+
+            <div>
+            <label htmlFor="seleccionar">Seleccionar País:</label>
+                    <select className={styles.select} id="seleccionar" onChange={handleSelect} required>
+                      
+                        {ciudades.map(e => (
+                            <option key={e.name} value={e.name}>{e.name}</option>
+                        ))}
+                    </select>
+            </div>
+            
+
+             
            
             <div className={styles.crearActBoton}>
                 <button className={styles.crear} type="submit">Crear</button>
-            </div>
+            </div> 
             
                 
         </form>
         </div>
     )
 }
+
+

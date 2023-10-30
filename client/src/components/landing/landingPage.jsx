@@ -1,18 +1,16 @@
-import mapa from '../../assets/pngegg.png'
-
+import telefono from '../../assets/pngegg.png'
 import styles from './landingPage.module.css'
 import {Link} from 'react-router-dom'
 
-export default function LandingPage(){
+export default function LandingPage(){//creo la funcion landing donde va a estar todo lo que quiero renderizar en mi landingpage
     return(
         
         <div className={styles.landing}>
             <h2 className={styles.titulo}>App Countries</h2>
-            {/* <h4 className={styles.parrafo}>Explora todos los paises que existen, su informacion y crea actividades para uno o varios de ellos</h4> */}
-             <img className={styles.celular} src={mapa} alt="paises" /> 
+             <img className={styles.celular} src={telefono} alt="paises" /> 
                  <button className={styles.boton}>
                     <Link to={"/home"}>
-                    Comencemos
+                    Sing in
                     </Link>
                 </button>
                 
@@ -21,8 +19,8 @@ export default function LandingPage(){
     );
     
 };
-
-
+//uso una imagen png que la inserto por arriba de la background image
+//creo un boton donde al hacer click me rediriga a home
 
 
 

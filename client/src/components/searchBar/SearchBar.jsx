@@ -11,7 +11,7 @@ export default function Search ({onSearch}){
     return(
         <div className={styles.container}>
             <input placeholder="Enter your countrie..." className={styles.input} onChange={handleChange} value={name} type="search" ></input>
-            <button  className={styles.boton} onClick={()=> onSearch(name)}>Agregar</button>
+            <button  className={styles.boton} onClick={()=> onSearch(name)}>Search</button>
         </div>
 
     )

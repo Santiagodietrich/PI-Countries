@@ -1,28 +1,55 @@
-import { filter_continents, filter_activities, order_byName , order_byPopulation} from "../../Redux/actions";
+import { filter_continents, get_activities, order_byName , order_byPopulation,filter_activities, traer_pais} from "../../Redux/actions";
 import React,{ useState, useEffect } from "react";
-import {useDispatch} from "react-redux";
-import styles from "./filtros.module.css"
+import {useDispatch, useSelector} from "react-redux";
+import styles from "./filtros.module.css";
+
+// const actividades=useSelector((state)=>state.actividad)
 
 export default  function Filtros({activities, setActivities}){
     const dispatch=useDispatch()
     
-    const[selectedActivity, setSelectedActivity]=useState('');
-    const[selectedCountry, setSelectedCountry]=useState('');
+    const[selectedActivity, setSelectedActivity]=useState([]);//creo un estado inicial para mis actividades
+    const[selectedCountry, setSelectedCountry]=useState([]);//creo un estado inicial para mis paises
+    const activi= useSelector((state)=> state.actividad)
+    const countries= useSelector((state)=>state.countries)
 
-    useEffect(()=>{
-        if(activities && activities.length > 0){
-            setActivities(activities);
-        }
-    },[activities])
+ 
 
-    const handleActChange=async(activitie)=>{
-        setSelectedActivity(activitie);
-        try{
-            await dispatch(filter_activities(activitie))
-        }catch(error){
-            console.error(error);
-        }
-    }
+   
+    useEffect(() => {//monta el componente 
+      dispatch(traer_pais())
+      dispatch(get_activities())
+    },[dispatch]);
+
+  
+
+    // const handleActChange=async(event)=>{
+    //   // event.preventDefault();
+    //   if(event.target.value === "All"){
+    //     dispatch(traer_pais())
+    //   }
+    //   dispatch(filter_activities(event.target.value))
+    //   console.log("valiuuu",event.target.value)
+    // }
+
+
+    const handleActChange = async (event) => {
+      if (event.target.value === "All") {
+        dispatch(traer_pais());
+      } else {
+        dispatch(filter_activities(event.target.value));
+        const selectedActivityCountries = activi.find(activity => activity.name === event.target.value);
+        setSelectedCountry(selectedActivityCountries ? selectedActivityCountries.Countries : []);
+      }
+      setSelectedActivity(event.target.value);
+    };
+    
+     
+    
+   
+  
+    
+    
 
     const handleContiChange=async (continent)=>{
         setSelectedCountry(continent);
@@ -34,56 +61,50 @@ export default  function Filtros({activities, setActivities}){
        
     }
 
-  
-
-    const handleOrderCountries=async(event)=>{
-        // try{
-        //     await dispatch(order_asc());
-        // }catch(error){
-        //     console.error(error);
-        // }
-        
+    const handleOrderCountries=async(event)=>{ 
         dispatch(order_byName(event.target.value))
+        console.log(event.target.value)
     }
 
-    const handleOrderPopulation=async(event)=>{
+    const handleOrderPopulation=async(event)=>{//me traigo el evento con su valor desde reducer y lo despacho con el valor que yo seleccione
         dispatch(order_byPopulation(event.target.value))
-        // selectedCountry(`ordenado por ${event.target.value}`)
     }
-
 
     return(
-        <div className={styles.filtro}>
+    <div className={styles.filtro}>
+      
       <div>
         <label>Filtrar por Actividad:</label>
-        <select value={selectedActivity} onChange={(e) => handleActChange(e.target.value)}>
-          <option value="">Todos</option>
-          {activities.map((activitie) => (
-            <option key={activitie} value={activitie}>
-              {activitie}
+        <select value={selectedActivity} onChange={handleActChange}>
+          <option>Activities</option>
+          <option value="All">Todos</option>
+          {activi.map((activity, index) => (
+            <option key={index} value={activity.name}>
+              {activity.name}
+              
             </option>
           ))}
         </select>
       </div>
+
+      
+
       <div>
         <label>Filtrar por Continente:</label>
         <select value={selectedCountry} onChange={(e) => handleContiChange(e.target.value)}>
-          <option value="">Todos los continentes</option>
           <option value="Africa">Africa</option>
           <option value="South America">South America</option>
           <option value="North America">North America</option>
-          <option value="Antartica">Antartica</option>
+          <option value="Antarctica">Antarctica</option>
           <option value="Asia">Asia</option>
-          <option value="Europa">Europa</option>
+          <option value="Europe">Europe</option>
           <option value="Oceania">Oceania</option>
-          
         </select>
       </div>
+
       <div>
         <label htmlFor="ordenalfabetico">Orden Alfabetico</label>
         <select id="ordenalfabetico" onChange={event=>handleOrderCountries(event)}>
-            <option >Seleccionar</option>
-            <option value="PorDefecto">Por Defecto</option>
             <option value="Ascendente">A-Z</option>
             <option value="Descendente">Z-A</option>
         </select>
@@ -91,17 +112,15 @@ export default  function Filtros({activities, setActivities}){
       <div>
         <label htmlFor="CantidadPoblacion">Orden Poblacion</label>
         <select  id="CantidadPoblacion" onChange={event=>handleOrderPopulation(event)}>
-            <option >Seleccionar</option>
-            <option value="PorDefecto">Por Defecto</option>
+            
             <option value="Ascendente">A-Z</option>
             <option value="Descendente">Z-A</option>
         </select>
       </div>
-     
     </div>
     )
 
-
+          
 
 }
 

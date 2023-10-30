@@ -1,76 +1,71 @@
-import { FILTER_ACTIVITIES,FILTER_CONTINENTS,TRAER_PAIS,ORDER_BYNAME, ORDER_BYPOPULATION,CREATE_ACTIVITY } from "./actions";
+import { GET_ACTIVITIES,FILTER_CONTINENTS,TRAER_PAIS,ORDER_BYNAME, ORDER_BYPOPULATION, FILTER_ACTIVITIES } from "./actions";
 const initialState={
-    allCountries:[],
-    filteredContinents:[],
-    countries:[]
+    //  allCountries:[],
+    filtered:[],
+    countries:[],
+    actividad:[],
+    allActividades:[]
 }
 
 const reducer=(state=initialState,action)=>{
     switch(action.type){
 
-        case TRAER_PAIS:
-            
-            return{...state,allCountries:action.payload,filteredContinents:action.payload,countries:action.payload}
+    case TRAER_PAIS:
+
+            return{...state,countries:action.payload,filtered:action.payload}
 
 
-   
+
+    case GET_ACTIVITIES:
+
+        return {...state,actividad:action.payload,allActividades:action.payload}
+
+
     case FILTER_ACTIVITIES:
-            let countryFilter = action.payload
-            let mensajeError = [{id:1,
-                 error: 'Ningún país tiene esa actividad',
-                 img: img}]
-            let hayOno = countryFilter.length !== 0 ? action.payload : mensajeError
-            return {
-                ...state,
-                countries: hayOno
-            }
-   
+        const activities = state.actividad;
+        const paisesFiltrados = activities.filter((activities) => {
+          return activities.name === action.payload
+        });
+        console.log("actividadCreada",paisesFiltrados[0])
+        if (action.payload === "All") {
+          return {
+            ...state,
+            countries: state.filtered,
+          };
+        } else {
+          return {
+            ...state,
+            countries: paisesFiltrados[0].Countries};
+            
+        }
+        
 
-    case FILTER_CONTINENTS: 
-            const filtro=state.allCountries.filter((e)=>e.continents === action.payload)
-            return{...state,countries:filtro}
 
-
-      
-
-
-    // case ORDER_BYNAME:
-    //         let sortedCountries;
-
-    //         if (action.payload === 'Z-A') {
-    //             sortedCountries = [...state.countries].sort((a, b) => b.name.localeCompare(a.name));
-    //         } else {
-    //             sortedCountries = [...state.countries].sort((a, b) => a.name.localeCompare(b.name));
-    //         }
-
-    //         return { ...state, countries: sortedCountries };
+    case FILTER_CONTINENTS:
+            const filtro=state.countries.filter((e)=>e.continents === action.payload)
+            return{...state,filtered:filtro}
 
     case ORDER_BYNAME:
-    const sortOrder = action.payload === 'Z-A' ? -1 : 1;
+            let sortedCountries;
+            console.log(state.countries)
+            if (action.payload === 'Descendente') {
+                sortedCountries = [...state.filtered].sort((a, b) => b.name.localeCompare(a.name));
+            } else {
+                sortedCountries = [...state.filtered].sort((a, b) => a.name.localeCompare(b.name));
+            }
 
-    const sortedCountries = [...state.countries].sort((a, b) =>
-        sortOrder * a.name.localeCompare(b.name)
-    );
-
-    return { ...state, countries: sortedCountries };
-
-    
-
-
+            return { ...state, filtered: sortedCountries };
 
     case ORDER_BYPOPULATION:
             let paisesOrdenados;
+            console.log(state.countries)
                 if (action.payload === "Ascendente") {
-                    paisesOrdenados = [...state.countries].sort((a, b) => a.population - b.population);
+                    paisesOrdenados = [...state.filtered].sort((a, b) => a.population - b.population);
                 } else {
-                    paisesOrdenados = [...state.countries].sort((a, b) => b.population - a.population);
+                    paisesOrdenados = [...state.filtered].sort((a, b) => b.population - a.population);
                 }
-                return { ...state, countries: paisesOrdenados };
+                return { ...state, filtered: paisesOrdenados };
 
-
-    case CREATE_ACTIVITY:
-        return{...state}
-        
 
         default:
             return {...state }
